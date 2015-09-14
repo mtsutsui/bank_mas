@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+	<head>
+	<title>urbank</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/urbank.css"/>	
+	</head>
+	
+<body>
+	
+	<div id="login-dialog" class="dialog-popup">
+		<div class="close-dialog"><a href="#" class="close">X</a></div>
+		
+		<h4>Sign In To Your Account</h4>
+		<br>
+		<form method="post" action="#">
+			<fieldset>
+				<label for="username">
+					<span>Username</span>
+					<input type="text" id="username" name="username" value=""></input>
+				</label>
+				<label for="password">
+					<span>Password</span>
+					<input type="password" id="password" name="password" value=""></input>
+				</label>
+			</fieldset>
+			<button class="submit" type="button">Login</button>		
+		</form>
+	</div>
+	
+	<!------------------------------------------------------------------------>
+	
+	<div class="container">
+	
+		<div class="top_nav">
+			<div class="urbank">URBANK</div>
+			
+			<div class="top_tabs">
+				<div><a href="#home">HOME</a></div>&nbsp;
+				<div><a href="#employee">EMPLOYEE</a></div>&nbsp;
+				<div><a href="#company">COMPANY</a></div>&nbsp;
+				<div><a href="#service">SERVICE</a></div>&nbsp;	
+				<div><a href="#contact">CONTACT</a></div>&nbsp;	
+			</div>
+			
+		</div>
+		
+		<div class="wrapper">
+			<div class="body_left">
+				
+				<div class="left_top">
+					<h2>Best Bank Ever!</h2>
+					<div class="best_bank">
+						<p>Why Best, Why Best, Why Best, Why Best, Why Best, Why Best, Why Best, Why Best, Why Best, Why Best, Why Best, 
+						</p>
+					</div>
+					
+					<div class="awesome_reasons">
+						<div class="bold_header">Reasons We are Awesome:</div>
+						<!--<h4 class="bold_header">Reasons We are Awesome:</h4>-->
+						<ul class="nav">
+							<li>reason1</li>
+							<li>reason2</li>
+							<li>reason3</li>
+						</ul>
+					</div>
+					
+					<div>&nbsp;</div>
+					<div class="mobile_info">
+						<div class="bold_header">Amazing Mobile Info</div>
+						<span>movile paragraph, movile paragraph, movile paragraph, movile paragraph, movile paragraph, movile paragraph, movile paragraph, movile paragraph, movile paragraph, movile paragraph, movile paragraph, movile paragraph, 
+						</span>
+					</div>
+					
+				</div>
+				
+				<div class="left_bottom">
+					<!--<table class="table table-hover">-->
+					<div class="bold_header">Rates | Check Them Out</div>
+					<table class="bank_rate_table">
+						<thead>
+							<th></th>
+							<th class="alnright">Annual Percentage Yeald</th>
+							<th class="alnright">Est. Earnings for 1 Year</th>
+						</thead>
+						<tbody id="rates">
+						</tbody>
+					</table>
+				</div>
+			
+			</div>
+			
+			<div class="body_right">
+				<div class="login">
+					<!--<input id="login" type="button" value="Login" ></input>-->
+					<a href="#" data-selector="#login-dialog" class="dialog-link">Login</a>
+				</div>
+				
+				<div class="news_archive">
+					<div class="news_tabs">
+						<ul>
+						  <li><a href="#news">News</a></li>
+						  <li><a href="#archive">Archive</a></li>
+						</ul>
+					</div>
+					
+					<div class="news_archive_container">
+						<div class="panel" id="news" >
+						</div>
+						<div class="panel" id="archive" >
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="urbank">2014 URBANK</div>
+			<div class="footer_tabs">
+				<div><a href="#home">HOME</a></div>&nbsp;
+				<div><a href="#employee">EMPLOYEE</a></div>&nbsp;
+				<div><a href="#company">COMPANY</a></div>&nbsp;
+				<div><a href="#service">SERVICE</a></div>&nbsp;	
+				<div><a href="#contact">CONTACT</a></div>&nbsp;	
+			</div>
+		</div>
+			
+	</div>
+		
+	<script>
+		
+		$( document ).ready(function() {
+			console.log( "ready!" );		
+			
+			//handle top navigation tabs
+			$('.top_tabs a').click(function(){
+				var $this = $(this);
+				$('.top_tabs a.active').removeClass('active'); //clear currently active tab
+				$this.addClass('active');
+			});
+			
+			//----------------------------------------------------------------------------------
+			var formatDollar = function (amount) {
+				var i = parseFloat(amount);
+				if(isNaN(i)) { i = 0.00; }
+				i = Math.abs(i);
+				i = parseInt((i + .005) * 100);
+				i = i / 100;
+				s = new String(i);
+				if(s.indexOf('.') < 0) { s += '.00'; }
+				if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
+				return s;
+			}
+								
+			//fetch bank rates from a local json file	
+			$.getJSON( "api/code-test.json" , function( rates ){
+				console.log("  rates = " + JSON.stringify(rates));
+				rates.sort(function(a, b){
+					if (b.apy > a.apy) { return 1; }
+				});
+				
+				var rowList = '';
+				for (var i = 0; i < rates.length; i++) {
+					var earningsDollar = formatDollar(rates[i].earnings);
+					var row = '<tr><td>' + rates[i].name 
+							+ '</td><td class="alnright">' + rates[i].apy 
+							+ '</td><td class="alnright">' + '$' + earningsDollar + '</td></tr>'; 
+					rowList += row;
+				};
+				$("tbody").append(rowList);
+				
+				$("tr:even").css( "background-color", "#CCE6CC" );  //light green 
+				$("tr:odd").css( "background-color", "#E6F2E6" );   //very light green 
+				$("tr:first").css( "background-color", "#ffffff" );  //no color on header 
+				$("tr:contains('URBank')" ).css("font-weight", "bold");
+			});
+
+			//----------------------------------------------------------------------------------------
+			
+			//initially load and show news
+			$("#news").load( "api/news.html" );
+			$(".news_tabs a:first").addClass('active_tab');
+			$("#news").addClass('active_panel');
+			
+			//handle news/archive tabs
+			$('.news_tabs a').click(function(){
+				console.log("either news or archive tab clicked");
+				var $this = $(this);
+				
+				$('.news_tabs a.active_tab').removeClass('active_tab'); //clear any currently active tab
+				$this.addClass('active_tab');
+				
+				$('.panel').hide();  //first hide all panels
+				var panel = $this.attr('href');
+				console.log("  panel = " + JSON.stringify(panel));	
+				$(panel).removeClass('active_panel');  //clear it first
+				$(panel).addClass('active_panel');
+				
+				//fetch panel content. for now fetch locally.
+				var localFilePath = "api/" + panel.replace("#", "") + ".html";
+				$(panel ).load( localFilePath );
+				
+				$(panel).show(); 
+				return false;
+			});
+			
+			
+			//modal dialog stuff -------------------------------------
+			$('a.dialog-link').click(function() {
+				console.log(" dialog-link clicked");
+				
+                var dialog_id = $(this).attr('data-selector');
+                //$('#dialog-overlay').fadeIn(200);
+                $(dialog_id).fadeIn(200);
+                $(dialog_id).css({ 
+                    'margin-top' : -($(dialog_id).height() + 4) / 2,
+                    'margin-left' : -($(dialog_id).width() + 4) / 2
+                });
+				
+				// mas - Add the mask to body 
+				$('body').append('<div id="dialog-overlay"></div>');
+				$('#dialog-overlay').fadeIn(300);
+				
+				/*
+				// mas - Add the mask to body 
+				$('body').append('<div id="mask"></div>');
+				$('#mask').fadeIn(300);
+				*/
+				
+                return false;
+            });
+
+            $('.dialog-popup a.close, #dialog-overlay').click(function() { 
+                $('.dialog-popup').fadeOut(200);
+                $('#dialog-overlay').fadeOut(200);
+				
+				//mas
+				//$('#mask').remove();  
+				
+                return false;
+            });
+			//modal stuff end ------------------------------------------
+			
+		});
+		
+	</script>
+</body>
+</html>

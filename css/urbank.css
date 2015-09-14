@@ -1,0 +1,326 @@
+	
+	body{font-family: sans-serif;}
+	
+	.container{
+		border: 1px solid #222222;
+		margin: 4px auto;  
+		width:90%;
+	}
+	
+	/*--------------------------------------------------------------*/	
+/*
+	#mask {
+			display: none;
+			background: #000;
+			position: fixed;
+			left: 0;
+			top: 0;
+			z-index: 10;
+			width: 100%;
+			height: 100%;
+			opacity: 0.8;
+			z-index: 999;
+	}
+*/
+	
+	#dialog-overlay {
+		background: #000;
+		bottom: 0;
+		display: none; 
+		height: 100%;
+		left: 0;
+		margin-left: auto;
+		margin-right: auto;
+		opacity: 0.75;
+		position: fixed;
+		right: 0;
+		top: 0;
+		width: 100%;
+		z-index: 99998;
+	}
+	
+
+	.dialog-popup {
+		background: none repeat scroll 0 0 #FFFFFF;
+		border: 2px solid #222222;
+		border-radius: 3px 3px 3px 3px;
+		font-family: Verdana,Geneva,sans-serif;
+		padding: 10px;
+		display: none;
+		left: 50%;
+		position: fixed;
+		top: 50%;
+		z-index: 99999; 
+		width:300px; /*mas*/
+	}
+
+	.dialog-popup .close-button {
+		float: right;
+		margin: -26px -26px 0 0;
+	}
+
+	.dialog-popup .close-dialog {
+		float: right;
+		font-weight:bold;
+	}
+	
+	.dialog-popup .close-dialog a{
+		text-decoration: none;
+	}
+	
+	.dialog-popup form fieldset {
+		border: medium none;
+		padding: 0;
+	}
+
+	.dialog-popup form fieldset label {
+		display: block;
+		/*display: inline-block;*/
+		/*font-size: 1.2em;*/
+		font-size: 0.8em;
+	}
+
+	.dialog-popup form fieldset label span, 
+	.dialog-popup form fieldset label input,
+	.dialog-popup form button,
+	.dialog-popup form a {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.dialog-popup form fieldset label input { 
+		/*background: none repeat scroll 0 0 #EEEEEE;*/
+		/*border-color: #FFFFFF #DDDDDD #DDDDDD #FFFFFF;*/
+		border-color: lightblue; /*mas*/
+		border-radius: 3px 3px 3px 3px;
+		border-style: solid;
+		border-width: 1px;
+		color: #000000;
+		padding: 6px 6px 4px;
+		/*width: 300px;*/
+		width: 250px;
+	}
+
+	.dialog-popup form button.submit {
+		border-color: #000000;
+		border-radius: 3px 3px 3px 3px;
+		border-width: 1px;
+		cursor: pointer;
+		margin-top: 10px;
+		padding: 6px 6px 4px;
+		/*width: 300px;*/
+		width: 100px;
+		float:right; /*mas*/
+		background-color: purple;  /*mas*/
+		color:white; /*font color*/
+	}
+	
+	.dialog-popup form button.submit:hover {
+		background-color: #D9B2D9;
+	}  
+		
+	/*---------------------------------------------------------------------------------*/
+	
+	.top_nav{
+		/*margin: 4px auto;  */
+		width:100%;
+		height:30px;
+		line-height: 30px;  /* makes text vertical center */
+		border:solid 1px;
+		background-color:#8080FF;
+	}
+	
+	.footer{
+		/*margin: 4px auto;  */
+		width:100%;
+		height:30px;
+		line-height: 30px;  /* makes text vertical center */
+		border:solid 1px;
+		background-color:#E6E6FF;
+	}
+	
+	  .urbank{
+		margin-left:30px;
+		float:left;
+		font-weight: bold;
+	  }
+	  
+	  .top_tabs, .footer_tabs{
+		float:right;
+		height:100%;
+	  }
+	  
+	  .top_tabs div, .footer_tabs div{
+		float:left;
+		font-size: 11px;
+		height:100%;
+	  }
+	  
+	  .top_tabs div a, .footer_tabs div a{
+		display: block;      
+		height:80%;
+	  }
+	  
+		.top_nav li, .footer li{
+			float:left;
+			list-style:none;
+		}
+		.top_nav a{
+			display:block;
+			text-decoration: none;
+			padding: 3px 5px;
+			color:white;
+		}
+		.footer a{
+			display:block;
+			text-decoration: none;
+			padding: 3px 5px;
+			color:blue;
+		}
+	
+		li a:hover{
+			background-color:#8080Ff;
+		}
+		.active{
+			background-color:#0000CC;
+		}
+	
+	.mobile_info{
+		background-color:#B2D9B2;  /*light green*/
+	}
+	
+	.wrapper{
+		margin: 4px auto;  
+		/*border:solid 1px;*/
+		width:80%;
+		height:520px;
+	}
+		.body_left{
+			margin: 4px; 
+			/*border:solid 1px;*/
+			float:left;
+			width:70%;
+			height:500px;
+		}
+		
+			.left_top{
+				margin: 4px; 
+				/*border:solid 1px;*/
+				width:96%;
+				height:300px;
+			}
+			.left_bottom{
+				margin: 4px; 
+				/*border:solid 1px;*/
+				width:96%;
+				height:180px;
+			}
+		
+		.body_right{
+			margin: 4px; 
+			/*border:solid 1px;*/
+			float:right;
+			width:25%;
+			height:500px;
+		}
+		
+		.login{
+			margin: 4px; 
+			border:solid 1px;
+			width:90%;
+			height:30px;
+		}
+		.news_archive{
+			margin: 4px; 
+			/*border:solid 1px;*/
+			width:90%;
+			height:450px;
+		}
+		
+		.news_tabs{
+		}
+		
+		.news_tabs li{
+			float:left;
+			list-style:none;
+		}
+		
+		.news_archive_container{
+			clear:both;
+		}
+	
+		.news_tabs a{
+			display:block;
+			text-decoration: none;
+			padding: 3px 5px;
+			/*color:white;*/
+		}
+		
+		.active_tab, .active_panel{
+			background-color:#E6E6FF;  /* very light blue */
+		}
+		
+		.bank_rate_table{
+			width:100%
+		}
+		
+		.alnright { text-align: right; }
+		
+		.bold_header{font-weight: bold;}
+		
+		div + ul {
+			margin-top: -2px;
+		}
+		
+		ul.nav{
+			padding: 0px;
+		}
+
+		ul.nav li{
+			/*padding:2px;*/   
+			margin-left: 15px;				
+		}
+		
+
+		.login {
+			height: 24px;
+			line-height: 24px;
+			text-align: center;
+			vertical-align: middle;
+			background: black;
+		}
+		.login a{
+			display:block;
+			text-decoration: none;
+			color:white;
+		}
+		
+		.sign_in(
+			font-size:16px;
+		}
+		
+		
+		/*
+		form label{
+			display: inline-block;
+			width: 60px;
+		}
+		*/
+		
+		/*
+		form label a{
+			font-size: 10px;
+		}
+		*/
+		/*
+		form label{
+			display:inline-block;
+			font-size: 8px;
+		}
+		
+		form input{
+			display:inline-block;
+		}
+		*/
+		
+	/* ---------------------------------------------------------------- */	
